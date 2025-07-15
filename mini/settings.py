@@ -95,10 +95,10 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'), # DB(스키마) 이름
-        'USER': config('DB_USER'), # 유저 이름 (root)
-        'PASSWORD': config('DB_PASSWORD'), # DB 비밀번호
-        'HOST': config('DB_HOST'), # DB 엔드포인트
+        'NAME': config('mini-db'), # DB(스키마) 이름
+        'USER': config('root'), # 유저 이름 (root)
+        'PASSWORD': config('ofnadwy01!!'), # DB 비밀번호
+        'HOST': config('mini-db.c1uuk0oaa3p5.ap-southeast-2.rds.amazonaws.com'), # DB 엔드포인트
         'PORT': 3306,
     }
 }
