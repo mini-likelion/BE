@@ -22,11 +22,12 @@ def init_db(request):
     return HttpResponse("DB 초기화 완료!")
 
 
-
+'''
 from django.http import JsonResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Movie
-
+'''
+'''
 
 def movie_list(request):
     query = request.GET.get('q', '')  # 검색어 기본값 빈 문자열
@@ -66,3 +67,24 @@ def movie_list(request):
     }
 
     return JsonResponse(response)
+    '''
+from django.http import JsonResponse
+from .models import Movie
+
+def movie_list(request):
+    movies = Movie.objects.all()
+
+    data = [
+        {
+            "title_kor": movie.title_kor,
+            "poster_url": movie.poster_url
+        }
+        for movie in movies
+    ]
+
+    response = {
+        "movies": data
+    }
+
+    return JsonResponse(response)
+
