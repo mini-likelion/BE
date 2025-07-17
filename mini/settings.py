@@ -95,7 +95,7 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('mini04-db'), # DB(스키마) 이름
+        'NAME': config('DB_NAME'), # DB(스키마) 이름
         'USER': config('root'), # 유저 이름 (root)
         'PASSWORD': config('minidb01!!'), # DB 비밀번호
         'HOST': config('mini04-db.c1uuk0oaa3p5.ap-southeast-2.rds.amazonaws.com'), # DB 엔드포인트
