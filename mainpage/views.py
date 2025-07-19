@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import requests
 
-def mainpage_view(request):
-    return render(request, 'mainpage.html')
+def home(request):
+    return render(request, 'home.html')  # 또는 HttpResponse로 간단하게
+
 
 # API에서 영화 데이터 가져오기
 def fetch_movies_from_api():
