@@ -17,6 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from mainpage.views import *
+from django.urls import path, include
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+
+app_names = [
+    'accounts',
+    'detailpage',
+    'mainpage',
+    'movies',
+    'mini',
+]
 
 urlpatterns = [
     path('', include('mainpage.urls')),
@@ -29,3 +39,32 @@ urlpatterns = [
     path('detailpage/',include('detailpage.urls')),
 ]
 
+for app in app_names:
+    schema_name = f'schema-{app}'
+    docs_name   = f'swagger-ui-{app}'
+
+    # OpenAPI 스키마 (JSON/YAML)
+    urlpatterns.append(
+        path(
+            f'api/schema/{app}/',
+            SpectacularAPIView.as_view(
+                patterns=[
+                    # 각 앱의 urls.py 에 정의된 엔드포인트만 문서화
+                    path(f'api/{app}/', include((f'{app}.urls', app), namespace=app))
+                ]
+            ),
+            name=schema_name
+        )
+    )
+
+    # Swagger UI
+    urlpatterns.append(
+        path(
+            f'api/docs/{app}/',
+            SpectacularSwaggerView.as_view(
+                url_name=schema_name,
+                title=f'{app.capitalize()} API 문서'
+            ),
+            name=docs_name
+        )
+    )
