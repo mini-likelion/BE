@@ -19,6 +19,7 @@ from django.urls import path, include
 from mainpage.views import *
 
 urlpatterns = [
+    path('', include('mainpage.urls'))
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),#sujin
     path('dj/', include('dj_rest_auth.urls')), #sujin
