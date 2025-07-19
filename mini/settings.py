@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'allauth.socialaccount', 
     'movies' , #영서
+    'rest_framework',
+    'drf_sepctacular',
 ]
 
 MIDDLEWARE = [
@@ -185,7 +187,14 @@ REST_AUTH = {
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     ),
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE':       'Mini04 API',
+    'DESCRIPTION': '모든 앱별 분리된 API 문서',
+    'VERSION':     '1.0.0',
 }
 
 from datetime import timedelta
