@@ -96,9 +96,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': config('DB_NAME'), # DB(스키마) 이름
-        'USER': config('root'), # 유저 이름 (root)
-        'PASSWORD': config('minidb01!!'), # DB 비밀번호
-        'HOST': config('mini04-db.c1uuk0oaa3p5.ap-southeast-2.rds.amazonaws.com'), # DB 엔드포인트
+        'USER': config('DB_USER'), # 유저 이름 (root)
+        'PASSWORD': config('DB_PASSWORD'), # DB 비밀번호
+        'HOST': config('DB_HOST'), # DB 엔드포인트
         'PORT': 3306,
     }
 }
@@ -153,7 +153,7 @@ REST_AUTH = {
     'JWT_SERIALIZER': 'dj_rest_auth.serializers.JWTSerializer',
     'JWT_SERIALIZER_WITH_EXPIRATION': 'dj_rest_auth.serializers.JWTSerializerWithExpiration',
     'JWT_TOKEN_CLAIMS_SERIALIZER': 'rest_framework_simplejwt.serializers.TokenObtainPairSerializer',
-		'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserDetailSerializer',
+      'USER_DETAILS_SERIALIZER': 'accounts.serializers.CustomUserDetailSerializer',
     'PASSWORD_RESET_SERIALIZER': 'dj_rest_auth.serializers.PasswordResetSerializer',
     'PASSWORD_RESET_CONFIRM_SERIALIZER': 'dj_rest_auth.serializers.PasswordResetConfirmSerializer',
     'PASSWORD_CHANGE_SERIALIZER': 'dj_rest_auth.serializers.PasswordChangeSerializer',
