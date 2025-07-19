@@ -14,3 +14,6 @@ RUN pip install -r requirements.txt
 RUN pip install pymysql
 
 COPY .env .
+
+COPY requirements.txt .
+RUN pip install -r requirements.txt
