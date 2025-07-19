@@ -37,6 +37,8 @@ urlpatterns = [
     path('mainpage/', include('mainpage.urls')),
     path('movies/',include('movies.urls')),
     path('detailpage/',include('detailpage.urls')),
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
 
 for app in app_names:
