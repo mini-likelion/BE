@@ -3,7 +3,7 @@ from django.http import HttpResponse
 import requests
 
 def home(request):
-    return render(request, 'home.html')  # 또는 HttpResponse로 간단하게
+    return HttpResponse("<h1>홈 페이지가 곧 나타납니다 🚀</h1>")
 
 
 # API에서 영화 데이터 가져오기
