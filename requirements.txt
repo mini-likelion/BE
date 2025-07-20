@@ -32,6 +32,6 @@ tzdata==2025.2
 uritemplate==4.2.0
 urllib3==2.5.0
 PyMySQL
-drfspectacular
-corsheaders
+drf-spectacular
+django-cors-headers==4.7.0
 drf-yasg
