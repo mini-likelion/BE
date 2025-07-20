@@ -17,25 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from mainpage.views import *
-from django.urls import path, include
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
 )
 from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
 from movies.views import movie_detail, movie_list, init_db
 
-schema_view = get_schema_view(
-    openapi.Info(
-        title="MiniHack API",
-        default_version='v1',
-        description="영화 API 문서입니다",
-    ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
-)
 
 
 app_names = [
@@ -59,7 +47,6 @@ urlpatterns = [
     path('detailpage/',include('detailpage.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-ui'),
 ]
 
 for app in app_names:
