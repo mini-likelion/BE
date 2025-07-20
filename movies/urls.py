@@ -1,9 +1,10 @@
 from django.urls import path
-from . import views
+from .views import movie_list, movie_detail, init_db
 
 app_name = 'movies'
 
 urlpatterns = [    
-    path('', views.movie_list, name='movie_list'),
-    path('<int:movie_id>/', views.movie_detail, name='movie_detail'),
+    path('movies/', movie_list, name='movie-list'),
+    path('movies/<int:movie_id>/', movie_detail, name='movie-detail'),
+    path('init_db/', init_db, name='init-db'),
 ]
