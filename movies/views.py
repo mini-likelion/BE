@@ -34,24 +34,18 @@ def movie_list(request):
         return Response({"error": str(e)}, status=500)
 
 
-@swagger_auto_schema(
-    method='get',
-    manual_parameters=[movie_id_param],
-    operation_summary="영화 상세 조회",
-    responses={200: MovieSerializer()}
-)
 @api_view(['GET'])
+@swagger_auto_schema(method='get', responses={200: MovieSerializer()})
 def movie_detail(request, movie_id):
-    """
-    GET /movies/<movie_id>/
-    특정 영화 상세 정보를 반환합니다.
-    """
     try:
         movie = Movie.objects.get(id=movie_id)
         serializer = MovieSerializer(movie)
         return Response(serializer.data)
     except Movie.DoesNotExist:
-        return Response({"error": "Movie not found"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"error": "Movie not found"}, status=404)
+    except Exception as e:
+        print("🔥 [movie_detail] 예외 발생:", repr(e))
+        return Response({"error": str(e)}, status=500)
 
 
 # ⚠️ Swagger 문서화에서 제외될 init_db 함수
