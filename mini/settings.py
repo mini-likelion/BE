@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'movies' , #영서
     'drf_spectacular',
     'corsheaders',
+    'def_yasg',
 ]
 
 MIDDLEWARE = [
