@@ -25,6 +25,7 @@ from drf_spectacular.views import (
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from movies.views import movie_detail
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -53,6 +54,7 @@ urlpatterns = [
     path('dj/registration/', include('dj_rest_auth.registration.urls')),
     path('mainpage/', include('mainpage.urls')),
     path('movies/', movie_list, name='movie-list'),
+    path('movies/<int:movie_id>/', movie_detail, name='movie-detail'),
     path('init_db/', init_db, name='init-db'),
     path('detailpage/',include('detailpage.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
