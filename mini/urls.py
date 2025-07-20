@@ -28,13 +28,13 @@ from drf_yasg import openapi
 from movies.views import movie_detail
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="MiniHack API",
-      default_version='v1',
-      description="영화 API 문서",
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="MiniHack API",
+        default_version='v1',
+        description="영화 API 문서입니다",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
 
 
@@ -59,7 +59,7 @@ urlpatterns = [
     path('detailpage/',include('detailpage.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-ui'),
 ]
 
 for app in app_names:
