@@ -34,6 +34,8 @@ def movie_list(request):
         return Response({"error": str(e)}, status=500)
 
 
+from rest_framework.decorators import api_view
+
 @api_view(['GET'])
 @swagger_auto_schema(method='get', responses={200: MovieSerializer()})
 def movie_detail(request, movie_id):
