@@ -29,6 +29,10 @@ DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1', '3.105.4.37', 'mini04.shop']
 
 
+import pymysql
+pymysql.install_as_MySQLdb()
+
+
 # Application definition
 
 INSTALLED_APPS = [
