@@ -26,7 +26,7 @@ class Actor(models.Model):
     movie = models.ForeignKey(Movie, related_name='actors', on_delete=models.CASCADE) #actors로 역참조
     name = models.CharField(max_length=255)
     character = models.CharField(max_length=255)
-    image_url = models.URLField()
+    image_url = models.URLField(null=True, blank=True)
     
     def __str__(self):
         return f"{self.name} ({self.character})"
