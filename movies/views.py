@@ -19,7 +19,7 @@ movie_id_param = openapi.Parameter(
 @swagger_auto_schema(
     method='get',
     operation_summary="전체 영화 목록 조회",
-    responses={200: MovieSerializer(many=True)}
+    responses={200: MovieSerializer}
 )
 def movie_list(request):
     try:
