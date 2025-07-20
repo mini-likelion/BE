@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'allauth.socialaccount', 
     'movies' , #영서
-    'rest_framework',
     'drf_spectacular',
     'corsheaders',
 ]
