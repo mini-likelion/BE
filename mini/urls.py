@@ -40,7 +40,7 @@ urlpatterns = [
     path('dj/', include('dj_rest_auth.urls')), #sujin
     path('dj/registration/', include('dj_rest_auth.registration.urls')),
     path('mainpage/', include('mainpage.urls')),
-    path('movies/', movie_list, name='movie-list'),
+    path('movies/', include('movies.urls')),
     path('movies/<int:movie_id>/', movie_detail, name='movie-detail'),
     path('detailpage/',include('detailpage.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
