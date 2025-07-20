@@ -30,6 +30,11 @@ def movie_detail(request, movie_id):
         return Response({"error": str(e)}, status=500)
 
 # 🔧 DB 초기화용 외부 API 가져오기
+from django.http import JsonResponse
+from .models import Movie, Actor
+import requests
+from datetime import datetime
+
 def init_db(request):
     try:
         url = "http://43.200.28.219:1313/movies/"
@@ -42,19 +47,31 @@ def init_db(request):
 
         for m in movies_data:
             try:
+                if Movie.objects.filter(title_kor=m.get('title_kor')).exists():
+                    continue
+
+                # 날짜 처리
+                release_date = None
+                if m.get('release_date'):
+                    try:
+                        release_date = datetime.strptime(m['release_date'], '%Y-%m-%d').date()
+                    except ValueError:
+                        pass
+
                 movie = Movie.objects.create(
                     title_kor=m.get('title_kor'),
                     title_eng=m.get('title_eng'),
                     poster_url=m.get('poster_url'),
                     genre=m.get('genre'),
-                    showtime=m.get('showtime'),
-                    release_date=m.get('release_date'),
+                    showtime=int(m.get('showtime', 0)),
+                    release_date=release_date,
                     plot=m.get('plot'),
                     audience_score=m.get('rating'),
                     director_name=m.get('director_name'),
                     director_image_url=m.get('director_image_url'),
                 )
-                for actor in m.get('actors', []):
+
+                for actor in m.get('actors') or []:
                     Actor.objects.create(
                         movie=movie,
                         name=actor.get('name'),
@@ -68,4 +85,5 @@ def init_db(request):
     except Exception as e:
         print("🚨 init_db 전체 에러:", e)
         return JsonResponse({'error': str(e)}, status=500)
+
 
