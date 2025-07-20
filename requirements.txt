@@ -34,3 +34,4 @@ urllib3==2.5.0
 PyMySQL
 drfspectacular
 corsheaders
+drf-yasg
