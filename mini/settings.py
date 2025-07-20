@@ -113,7 +113,7 @@ DATABASES = {
         'USER': config('DB_USER'), # 유저 이름 (root)
         'PASSWORD': config('DB_PASSWORD'), # DB 비밀번호
         'HOST': config('DB_HOST'), # DB 엔드포인트
-        'PORT': 3306,
+        'PORT': config('DB_PORT'),
     }
 }
 
