@@ -22,8 +22,7 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 from rest_framework import permissions
-from movies.views import movie_detail, movie_list, init_db
-
+from movies.views import movie_detail, movie_list
 
 
 app_names = [
@@ -43,7 +42,6 @@ urlpatterns = [
     path('mainpage/', include('mainpage.urls')),
     path('movies/', movie_list, name='movie-list'),
     path('movies/<int:movie_id>/', movie_detail, name='movie-detail'),
-    path('init_db/', init_db, name='init-db'),
     path('detailpage/',include('detailpage.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
