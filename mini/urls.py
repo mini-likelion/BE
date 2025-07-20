@@ -25,7 +25,7 @@ from drf_spectacular.views import (
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from movies.views import movie_detail
+from movies.views import movie_detail, movie_list, init_db
 
 schema_view = get_schema_view(
     openapi.Info(

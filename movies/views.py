@@ -30,6 +30,7 @@ def movie_list(request):
         print("🔥 movie_list 예외 발생:", repr(e))
         return Response({"error": str(e)}, status=500)
 
+
 # 🎥 특정 영화 상세 조회
 @api_view(['GET'])  
 @swagger_auto_schema(
@@ -48,6 +49,7 @@ def movie_detail(request, movie_id):
     except Exception as e:
         print("🔥 movie_detail 예외 발생:", repr(e))
         return Response({"error": str(e)}, status=500)
+
 
 # 🔧 DB 초기화용 외부 API 가져오기 (문서화 제외)
 def init_db(request):
