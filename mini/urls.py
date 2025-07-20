@@ -18,7 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from mainpage.views import *
 from django.urls import path, include
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+)
 
 app_names = [
     'accounts',
