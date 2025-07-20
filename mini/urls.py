@@ -22,6 +22,20 @@ from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
 )
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="MiniHack API",
+      default_version='v1',
+      description="영화 API 문서",
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
+
 
 app_names = [
     'accounts',
@@ -38,10 +52,12 @@ urlpatterns = [
     path('dj/', include('dj_rest_auth.urls')), #sujin
     path('dj/registration/', include('dj_rest_auth.registration.urls')),
     path('mainpage/', include('mainpage.urls')),
-    path('movies/',include('movies.urls')),
+    path('movies/', movie_list, name='movie-list'),
+    path('init_db/', init_db, name='init-db'),
     path('detailpage/',include('detailpage.urls')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
 
 for app in app_names:
