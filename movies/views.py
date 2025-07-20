@@ -6,11 +6,24 @@ from rest_framework.response import Response
 from .serializers import MovieSerializer
 from rest_framework import status
 
+'''
 @api_view(['GET'])
 def movie_list(request):
     movies = Movie.objects.all()
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
+    '''
+@api_view(['GET'])
+def movie_list(request):
+    try:
+        movies = Movie.objects.all()
+        serializer = MovieSerializer(movies, many=True)
+        return Response(serializer.data)
+    except Exception as e:
+        print("🔥 movie_list 에러:", e)
+        return Response({"error": str(e)}, status=500)
+
+
 
 @api_view(['GET'])
 def movie_detail(request, movie_id):
