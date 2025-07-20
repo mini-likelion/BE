@@ -22,7 +22,7 @@ def movie_detail(request, movie_id):
     serializer = MovieSerializer(movie)
     return Response(serializer.data)
 
-
+'''
 def init_db(request):
     url = "http://43.200.28.219:1313/movies/"
     res = requests.get(url)
@@ -55,4 +55,43 @@ def init_db(request):
             )
 
     return JsonResponse({'message': '영화 데이터 저장 완료'})
+    '''
 
+def init_db(request):
+    try:
+        url = "http://43.200.28.219:1313/movies/"
+        res = requests.get(url, timeout=5)
+        res.raise_for_status()
+        movies_data = res.json().get('movies', [])
+
+        if not movies_data:
+            return JsonResponse({'error': '영화 데이터가 없습니다'}, status=500)
+
+        for m in movies_data:
+            try:
+                movie = Movie.objects.create(
+                    title_kor=m.get('title_kor'),
+                    title_eng=m.get('title_eng'),
+                    poster_url=m.get('poster_url'),
+                    genre=m.get('genre'),
+                    showtime=m.get('showtime'),
+                    release_date=m.get('release_date'),
+                    plot=m.get('plot'),
+                    audience_score=m.get('rating'),
+                    director_name=m.get('director_name'),
+                    director_image_url=m.get('director_image_url'),
+                )
+                for actor in m.get('actors', []):
+                    Actor.objects.create(
+                        movie=movie,
+                        name=actor.get('name'),
+                        character=actor.get('character'),
+                        image_url=actor.get('image_url'),
+                    )
+            except Exception as inner_err:
+                print("🎬 영화 저장 중 오류:", inner_err)
+
+        return JsonResponse({'message': '데이터 저장 완료'})
+    except Exception as e:
+        print("🚨 init_db 전체 에러:", e)
+        return JsonResponse({'error': str(e)}, status=500)
