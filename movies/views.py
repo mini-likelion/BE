@@ -15,7 +15,7 @@ movie_id_param = openapi.Parameter(
 )
 
 # 🎥 전체 영화 목록 조회
-@api_view(['GET'])  # ✅ 이 데코레이터가 가장 중요!
+@api_view(['GET']) 
 @swagger_auto_schema(
     method='get',
     operation_summary="전체 영화 목록 조회",
@@ -31,11 +31,11 @@ def movie_list(request):
         return Response({"error": str(e)}, status=500)
 
 # 🎥 특정 영화 상세 조회
-@api_view(['GET'])  # ✅ 필수: DRF 함수형 뷰로 등록
+@api_view(['GET'])  
 @swagger_auto_schema(
     method='get',
-    manual_parameters=[movie_id_param],
     operation_summary="특정 영화 상세 조회",
+    manual_parameters=[movie_id_param],
     responses={200: MovieSerializer}
 )
 def movie_detail(request, movie_id):
